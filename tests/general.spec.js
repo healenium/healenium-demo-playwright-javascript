@@ -1,3 +1,4 @@
+
 import { test, expect } from '@playwright/test';
 
 const TIMEOUT = 5000;
@@ -12,20 +13,20 @@ test.describe('General Tests', () => {
     test.slow();
 
     // Test elements before selector change
-    const testClassElement = page.locator('input.test_class');
+    const testClassElement = page.locator('input#change_className');
     await expect(testClassElement).toBeVisible();
     await testClassElement.press('Enter');
 
-    const testTagElement = page.locator('test_tag#change_element');
+    const testTagElement = page.locator('input#change_element');
     await expect(testTagElement).toBeVisible();
     await testTagElement.isVisible();
     const classAttr = await testTagElement.getAttribute('class');
     expect(classAttr).toBe('shadow-input1');
 
-    const changeNameElement = page.locator('input[name="change_name"]');
+    const changeNameElement = page.locator('input#change_wait');
     await expect(changeNameElement).toBeVisible();
 
-    const linkElement = page.locator('a:has-text("Change: LinkText, PartialLinkText")');
+    const linkElement = page.locator('a#change_links');
     await expect(linkElement).toBeVisible();
     await linkElement.isVisible();
     const linkClassAttr = await linkElement.getAttribute('class');
@@ -37,22 +38,22 @@ test.describe('General Tests', () => {
     await submitBtn.click({ timeout: TIMEOUT });
 
     // Test elements after selector change (should be healed)
-    const healedTestClassElement = page.locator('input.test_class');
+    const healedTestClassElement = page.locator('input#change_className');
     await expect(healedTestClassElement).toBeVisible();
     await healedTestClassElement.press('Enter', { timeout: TIMEOUT });
 
-    const healedTestTagElement = page.locator('test_tag#change_element');
+    const healedTestTagElement = page.locator('input#change_element');
     await expect(healedTestTagElement).toBeVisible();
     await healedTestTagElement.isVisible({ timeout: TIMEOUT });
     const healedClassAttr = await healedTestTagElement.getAttribute('class', { timeout: TIMEOUT });
     expect(healedClassAttr).toBe(classAttr);
 
 
-    const healedChangeNameElement = page.locator('input[name="change_name"]');
+    const healedChangeNameElement = page.locator('input#change_wait');
     await expect(healedChangeNameElement).toBeVisible();
     await healedChangeNameElement.press('Enter', { timeout: TIMEOUT });
 
-    const healedLinkElement = page.locator('a:has-text("Change: LinkText, PartialLinkText")');
+    const healedLinkElement = page.locator('a#change_links');
     await expect(healedLinkElement).toBeVisible();
     await healedLinkElement.isVisible();
     const healedLinkClassAttr = await healedLinkElement.getAttribute('class', { timeout: TIMEOUT });
@@ -62,18 +63,18 @@ test.describe('General Tests', () => {
   test('Page API -Input fields click with FindBy annotation', async ({ page }) => {
     test.slow();
     // Test elements before selector change
-    const testClassElement = await page.$('input.test_class');
+    const testClassElement = await page.$('input#change_className');
     await testClassElement.press('Enter');
 
-    const testTagElement = await page.$('test_tag#change_element');
+    const testTagElement = await page.$('input#change_element');
     const classAttr = await testTagElement.getAttribute('class');
     expect(classAttr).toBe('shadow-input1');
     await testTagElement.isVisible();
 
-    const changeNameElement = await page.$('input[name="change_name"]');
+    const changeNameElement = await page.$('input#change_wait');
     await changeNameElement.press('Enter');
 
-    const linkElement = await page.$('a:has-text("Change: LinkText, PartialLinkText")');
+    const linkElement = await page.$('a#change_links');
     await linkElement.isVisible();
     const linkClassAttr = await linkElement.getAttribute('class');
     expect(linkClassAttr).toBe('input1');
@@ -84,21 +85,21 @@ test.describe('General Tests', () => {
     await page.waitForTimeout(WAIT_TIMEOUT);
     
     // Test elements after selector change (should be healed)
-    const healedTestClassElement = await page.$('input.test_class');
+    const healedTestClassElement = await page.$('input#change_className');
     await page.waitForTimeout(WAIT_TIMEOUT);
     await healedTestClassElement.press('Enter');
 
-    const healedTestTagElement = await page.$('test_tag#change_element');
+    const healedTestTagElement = await page.$('input#change_element');
     await page.waitForTimeout(WAIT_TIMEOUT);
     const healedClassAttr = await healedTestTagElement.getAttribute('class');
     expect(healedClassAttr).toBe(classAttr);
     await healedTestTagElement.isVisible();
 
-    const healedChangeNameElement = await page.$('input[name="change_name"]');
+    const healedChangeNameElement = await page.$('input#change_wait');
     await page.waitForTimeout(WAIT_TIMEOUT);
     await healedChangeNameElement.press('Enter');
 
-    const healedLinkElement = await page.$('a:has-text("Change: LinkText, PartialLinkText")');
+    const healedLinkElement = await page.$('a#change_links');
     await page.waitForTimeout(WAIT_TIMEOUT);
     await healedLinkElement.isVisible();
     const healedLinkClassAttr = await healedLinkElement.getAttribute('class');
