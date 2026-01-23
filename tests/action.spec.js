@@ -24,7 +24,7 @@ test.describe('Locator API - getBy - Tests', () => {
 
   test('double click action', async ({ page }) => {
     test.slow();
-    const inputField = page.locator('input#change_id');
+    const inputField = page.locator('#change_id');
     await inputField.dblclick({ timeout: TIMEOUT });
 
     // Click Change locators button to test healing
@@ -32,7 +32,7 @@ test.describe('Locator API - getBy - Tests', () => {
     await submitBtn.click();
 
     // Test healing - same action should work after locator change
-    const healedInputField = page.locator('input#change_id');
+    const healedInputField = page.locator('#change_id');
     await healedInputField.dblclick({ timeout: TIMEOUT });
   });
 
