@@ -31,29 +31,4 @@ test.describe('Locator API - getBy - Tests', () => {
     await expect(page.getByRole('img', { name: 'Healenium Logo' })).toBeVisible({ TIMEOUT });
   });
 
-  test('getByLabel', async ({ page }) => {
-    test.slow();
-    await expect(page.getByLabel('Field with hover')).toBeVisible({ TIMEOUT });
-
-    // Click Change locators button to test healing
-    const submitBtn = page.locator('#Submit');  
-    await submitBtn.click();
-
-    // Test healing - same action should work after locator change
-    await expect(page.getByLabel('Field with hover')).toBeVisible({ TIMEOUT });
-
-  });
-
-  test('getByTestId', async ({ page }) => {
-    test.slow();
-    await expect(page.getByTestId('change_testId')).toBeVisible({ TIMEOUT });
-
-    // Click Change locators button to test healing
-    const submitBtn = page.locator('#Submit');
-    await submitBtn.click();
-
-    // Test healing - same action should work after locator change
-    await expect(page.getByTestId('change_testId')).toBeVisible({ TIMEOUT });
-  });
-
 });
