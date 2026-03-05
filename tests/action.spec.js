@@ -7,28 +7,33 @@ test.describe('Locator API - getBy - Tests', () => {
     await page.goto('https://healenium.github.io/healenium-test-env/index.html', { waitUntil: 'load' });
   });
 
-  test('getByTitle', async ({ page }) => {
+  test('click action', async ({ page }) => {
     test.slow();
-    await expect(page.getByTitle('Validate change test id')).toBeVisible({ TIMEOUT });
+
+    const inputField = page.locator('.test_class');
+    await inputField.click({ timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     const submitBtn = page.locator('#Submit');
     await submitBtn.click();
 
     // Test healing - same action should work after locator change
-    await expect(page.getByTitle('Validate change test id')).toBeVisible({ TIMEOUT });
+    const healedInputField = page.locator('.test_class');
+    await healedInputField.click({ timeout: TIMEOUT });
   });
 
-  test('getByRole - img - alt', async ({ page }) => {
+  test('double click action', async ({ page }) => {
     test.slow();
-    await expect(page.getByRole('img', { name: 'Healenium Logo' })).toBeVisible({ TIMEOUT });
+    const inputField = page.locator('input#change_id');
+    await inputField.dblclick({ timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     const submitBtn = page.locator('#Submit');
     await submitBtn.click();
 
     // Test healing - same action should work after locator change
-    await expect(page.getByRole('img', { name: 'Healenium Logo' })).toBeVisible({ TIMEOUT });
+    const healedInputField = page.locator('input#change_id');
+    await healedInputField.dblclick({ timeout: TIMEOUT });
   });
 
 });
