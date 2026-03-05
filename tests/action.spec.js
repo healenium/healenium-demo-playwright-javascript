@@ -36,4 +36,53 @@ test.describe('Locator API - Action Methods - Tests', () => {
     await healedInputField.dblclick({ timeout: TIMEOUT });
   });
 
+  test('getByTitle', async ({ page }) => {
+    test.slow();
+    await expect(page.getByTitle('Validate change test id')).toBeVisible({ TIMEOUT });
+
+    // Click Change locators button to test healing
+    const submitBtn = page.locator('#Submit');
+    await submitBtn.click();
+
+    // Test healing - same action should work after locator change
+    await expect(page.getByTitle('Validate change test id')).toBeVisible({ TIMEOUT });
+  });
+
+  test('getByRole - img - alt', async ({ page }) => {
+    test.slow();
+    await expect(page.getByRole('img', { name: 'Healenium Logo' })).toBeVisible({ TIMEOUT });
+
+    // Click Change locators button to test healing
+    const submitBtn = page.locator('#Submit');
+    await submitBtn.click();
+
+    // Test healing - same action should work after locator change
+    await expect(page.getByRole('img', { name: 'Healenium Logo' })).toBeVisible({ TIMEOUT });
+  });
+
+  test('getByLabel', async ({ page }) => {
+    test.slow();
+    await expect(page.getByLabel('Field with hover')).toBeVisible({ TIMEOUT });
+
+    // Click Change locators button to test healing
+    const submitBtn = page.locator('#Submit');  
+    await submitBtn.click();
+
+    // Test healing - same action should work after locator change
+    await expect(page.getByLabel('Field with hover')).toBeVisible({ TIMEOUT });
+
+  });
+
+  test('getByTestId', async ({ page }) => {
+    test.slow();
+    await expect(page.getByTestId('change_testId')).toBeVisible({ TIMEOUT });
+
+    // Click Change locators button to test healing
+    const submitBtn = page.locator('#Submit');
+    await submitBtn.click();
+
+    // Test healing - same action should work after locator change
+    await expect(page.getByTestId('change_testId')).toBeVisible({ TIMEOUT });
+  });
+
 });
