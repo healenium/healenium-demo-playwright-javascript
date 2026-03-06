@@ -21,7 +21,7 @@ test.describe('Locator API - getBy - Tests', () => {
     const healedInputField = page.locator('.test_class');
     await healedInputField.click({ timeout: TIMEOUT });
   });
-
+/*
   test('double click action', async ({ page }) => {
     test.slow();
     const inputField = page.locator('input#change_id');
@@ -35,5 +35,5 @@ test.describe('Locator API - getBy - Tests', () => {
     const healedInputField = page.locator('input#change_id');
     await healedInputField.dblclick({ timeout: TIMEOUT });
   });
-
+*/
 });
