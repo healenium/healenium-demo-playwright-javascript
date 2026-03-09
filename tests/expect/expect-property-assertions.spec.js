@@ -1,3 +1,4 @@
+
 /**
  * Healing behaviour for Playwright expect(locator) property assertion methods.
  *
@@ -14,28 +15,28 @@ test.describe('Expect - Property Assertions (healing)', () => {
 
   test('toHaveAttribute', async ({ page }) => {
     test.slow();
-    const loc = page.locator('#change_id');
+    const loc = page.locator('input#newValue');
     await expect(loc).toHaveAttribute('type', 'text', { timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     await page.locator('#Submit').click();
 
     // Test healing - same action should work after locator change
-    const healed = page.locator('#change_id');
+    const healed = page.locator('input#newValue');
     await expect(healed).toHaveAttribute('type', 'text', { timeout: TIMEOUT });
   });
 
 
   test('toHaveJSProperty', async ({ page }) => {
     test.slow();
-    const loc = page.locator('#change_id');
+    const loc = page.locator('input#newValue');
     await expect(loc).toHaveJSProperty('type', 'text', { timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     await page.locator('#Submit').click();
 
     // Test healing - same action should work after locator change
-    const healed = page.locator('#change_id');
+    const healed = page.locator('input#newValue');
     await expect(healed).toHaveJSProperty('type', 'text', { timeout: TIMEOUT });
 
   });
@@ -43,27 +44,27 @@ test.describe('Expect - Property Assertions (healing)', () => {
 
   test('toHaveId', async ({ page }) => {
     test.slow();
-    const loc = page.locator('.test_class');
+    const loc = page.locator('input#change_className');
     await expect(loc).toHaveId('change_className', { timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     await page.locator('#Submit').click();
 
     // Test healing - same action should work after locator change
-    const healed = page.locator('.test_class');
+    const healed = page.locator('input#change_className');
     await expect(healed).toHaveId('change_className', { timeout: TIMEOUT });
   });
 
   test('toHaveRole', async ({ page }) => {
     test.slow();
-    const loc = page.locator('.test_class');
+    const loc = page.locator('input#change_className');
     await expect(loc).toHaveRole('textbox', { timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     await page.locator('#Submit').click();
 
     // Test healing - same action should work after locator change
-    const healed = page.locator('.test_class');
+    const healed = page.locator('input#change_className');
     await expect(healed).toHaveRole('textbox', { timeout: TIMEOUT });
   });
 
