@@ -1,3 +1,4 @@
+
 import { test, expect } from '@playwright/test';
 
 const TIMEOUT = 5000;
@@ -10,7 +11,7 @@ test.describe('Locator API - getBy - Tests', () => {
   test('click action', async ({ page }) => {
     test.slow();
 
-    const inputField = page.locator('.test_class');
+    const inputField = page.locator('input#change_className');
     await inputField.click({ timeout: TIMEOUT });
 
     // Click Change locators button to test healing
@@ -18,7 +19,7 @@ test.describe('Locator API - getBy - Tests', () => {
     await submitBtn.click();
 
     // Test healing - same action should work after locator change
-    const healedInputField = page.locator('.test_class');
+    const healedInputField = page.locator('input#change_className');
     await healedInputField.click({ timeout: TIMEOUT });
   });
 /*
