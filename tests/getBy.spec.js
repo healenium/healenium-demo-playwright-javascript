@@ -9,26 +9,26 @@ test.describe('Locator API - getBy - Tests', () => {
 
   test('getByTitle', async ({ page }) => {
     test.slow();
-    await expect(page.getByTitle('Validate change test id')).toBeVisible({ TIMEOUT });
+    await expect(page.locator('input#validate_testId')).toBeVisible({ TIMEOUT });
 
     // Click Change locators button to test healing
     const submitBtn = page.locator('#Submit');
     await submitBtn.click();
 
     // Test healing - same action should work after locator change
-    await expect(page.getByTitle('Validate change test id')).toBeVisible({ TIMEOUT });
+    await expect(page.locator('input#validate_testId')).toBeVisible({ TIMEOUT });
   });
 
   test('getByRole - img - alt', async ({ page }) => {
     test.slow();
-    await expect(page.getByRole('img', { name: 'Healenium Logo' })).toBeVisible({ TIMEOUT });
+    await expect(page.locator('img#logo_img')).toBeVisible({ TIMEOUT });
 
     // Click Change locators button to test healing
     const submitBtn = page.locator('#Submit');
     await submitBtn.click();
 
     // Test healing - same action should work after locator change
-    await expect(page.getByRole('img', { name: 'Healenium Logo' })).toBeVisible({ TIMEOUT });
+    await expect(page.locator('img#logo_img')).toBeVisible({ TIMEOUT });
   });
 
 });
