@@ -1,3 +1,4 @@
+
 /**
  * Healing behaviour for Playwright expect(locator) state assertion methods.
  *
@@ -14,38 +15,38 @@ test.describe('Expect - State Assertions (healing)', () => {
 
   test('toBeAttached', async ({ page }) => {
     test.slow();
-    const loc = page.locator('.test_class');
+    const loc = page.locator('input#change_className');
     await expect(loc).toBeAttached({ timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     await page.locator('#Submit').click();
 
-    const healed = page.locator('.test_class');
+    const healed = page.locator('input#change_className');
     await expect(healed).toBeAttached({ timeout: TIMEOUT });
   });
 
   test('toBeVisible', async ({ page }) => {
     test.slow();
-    const loc = page.locator('.test_class');
+    const loc = page.locator('input#change_className');
     await expect(loc).toBeVisible({ timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     await page.locator('#Submit').click();
 
-    const healed = page.locator('.test_class');
+    const healed = page.locator('input#change_className');
     await expect(healed).toBeVisible({ timeout: TIMEOUT });
   });
 
   test('toBeDisabled', async ({ page }) => {
     test.slow();
-    const loc = page.locator('#change_id');
+    const loc = page.locator('input#newValue');
     await expect(loc).not.toBeDisabled({ timeout: TIMEOUT });
 
     // Click Change locators button to test healing
     await page.locator('#Submit').click();
 
     // Test healing - same action should work after locator change
-    const healed = page.locator('#change_id');
+    const healed = page.locator('input#newValue');
     await expect(healed).not.toBeDisabled({ timeout: TIMEOUT });
   });
 
